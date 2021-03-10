@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block page_header %}
@@ -9,19 +8,55 @@
         </div>
     </div>
 {% endblock %}
-{% block extra-js %}{% endblock %}
 {% block content %}
-    <div class="container h-100">
-        <div class="row text-center">
-            <div class="col-md-5 col-sm-8">
-                <div class="col-md-7 col-sm-8 my-auto">
-                    <h1 class="display-5 logo-font text-black">
-                        Welcome to my site
-                    </h1>
-                </div>
-            </div>
+    <div class="overlay"></div>
+    <div class="card mb-2">
+        
+    </div>
+    {% if message_name %}
+        <div class="center-align">
+            <h2>Thanks
+                {{ message_name }}!</h2>
+            <p>
+                I have received your mail and will respond shortly</p>
         </div>
-    {% endblock %}
-    {% block postloadjs %}
-        {{ block.super }}
-    {% endblock %}
+    {% else %}
+        <div class="container container-contact">
+            <div class="row text-center">
+                <div class="col-md-4 col-sm-8">
+                    <div class="contact-info text-black">
+                        <h5>Address</h5>
+                        <p>Kilcool Kilnaleck Co-Cavan</p>
+                        <h5>Phone</h5>
+                        <p>086 182 2748</p>
+                        <h5>Email</h5>
+                        <p>jihane.azim@gmail.com</p>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8">
+                    <div class="contact-form text-black">
+                        <div class="section-heading">
+                            <h4>Get in touch
+                                {{ message_name }}</h4>
+                        </div>
+                        <form action="{% url 'contact' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-6 mt-2">
+                                    <input type="text" class="form-control mb-30" placeholder="Your name" name="message-name"></div>
+                                    <div class="col-lg-6 mt-2">
+                                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="message-mail"></div>
+                                        <div class="col-12 contact-message">
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message"></textarea>
+                                        </div>
+                                        <div class="col-12 text-center mb-2">
+                                            <button type="submit" class="submit-button btn btn-lg rounded-0 text-uppercase py-3">Send Message</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endblock %}
