@@ -50,6 +50,10 @@ width: fit-content;
     z-index: -1;
 }
 
+.jumbotron-bg{
+    background-color: pink;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
